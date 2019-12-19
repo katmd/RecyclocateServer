@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "budgie",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Budgeting Software for Everyone",
   "engines": {
     "node": ">= 7.0.0"
   },
