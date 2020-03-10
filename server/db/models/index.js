@@ -21,10 +21,13 @@ Location.hasMany(UserLocationUpdate)
 UserLocationUpdate.belongsTo(Location)
 
 // N:M Location:OverallService
-Location.belongsToMany(Service, {through: LocationService})
+Location.belongsToMany(Service, {
+  through: {model: LocationService, unique: false},
+  constraints: false
+})
 Service.belongsToMany(Location, {
   as: 'overallService',
-  through: LocationService,
+  through: {model: LocationService, unique: false},
   foreignKey: 'overallServiceId'
 })
 
