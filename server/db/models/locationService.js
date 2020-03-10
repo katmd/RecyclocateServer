@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const UserLocationUpdate = db.define('userLocationUpdate', {
+const LocationService = db.define('locationService', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -13,4 +13,4 @@ const UserLocationUpdate = db.define('userLocationUpdate', {
   }
 })
 
-module.exports = UserLocationUpdate
+module.exports = LocationService

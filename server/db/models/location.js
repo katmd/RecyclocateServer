@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 const Location = db.define('location', {
   latitude: {
@@ -24,6 +24,6 @@ const Location = db.define('location', {
       notEmpty: true
     }
   }
-});
+})
 
-module.exports = Location;
+module.exports = Location

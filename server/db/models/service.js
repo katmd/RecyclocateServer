@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 const Service = db.define('service', {
   category: {
@@ -11,11 +11,7 @@ const Service = db.define('service', {
   imageIcon: {
     type: Sequelize.STRING,
     defaultValue: '/images/recycling-symbol.png'
-  },
-  availableAtLocation: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
   }
-});
+})
 
-module.exports = Service;
+module.exports = Service

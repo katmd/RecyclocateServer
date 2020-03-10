@@ -2,6 +2,8 @@ const User = require('./user')
 const Service = require('./service')
 const Location = require('./location')
 const UserLocationUpdate = require('./userLocationUpdate')
+const LocationService = require('./locationService')
+const UserRating = require('./userRating')
 
 /* set associations */
 // N:M - User:Service
@@ -9,7 +11,7 @@ User.belongsToMany(Service, {
   through: {model: UserLocationUpdate, unique: false},
   constraints: false
 })
-Service.hasMany(User, {
+Service.belongsToMany(User, {
   through: {model: UserLocationUpdate, unique: false},
   constraints: false
 })
@@ -18,12 +20,25 @@ Service.hasMany(User, {
 Location.hasMany(UserLocationUpdate)
 UserLocationUpdate.belongsTo(Location)
 
-// 1:M Location:OverallService
-Location.hasMany(Service, {as: 'OverallServices'})
+// N:M Location:OverallService
+Location.belongsToMany(Service, {through: LocationService})
+Service.belongsToMany(Location, {
+  as: 'overallService',
+  through: LocationService,
+  foreignKey: 'overallServiceId'
+})
+
+// 1:N:M UserRating:User:Location
+UserRating.belongsTo(User)
+UserRating.belongsTo(Location)
+User.hasMany(UserRating)
+Location.hasMany(UserRating)
 
 module.exports = {
   User,
   Service,
   Location,
-  UserLocationUpdate
+  UserLocationUpdate,
+  LocationService,
+  UserRating
 }
