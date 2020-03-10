@@ -1,18 +1,29 @@
 const User = require('./user')
+const Service = require('./service')
+const Location = require('./location')
+const UserLocationUpdate = require('./userLocationUpdate')
 
-/**
- * If we had any associations to make, this would be a great place to put them!
- * ex. if we had another model called BlogPost, we might say:
- *
- *    BlogPost.belongsTo(User)
- */
+/* set associations */
+// N:M - User:Service
+User.belongsToMany(Service, {
+  through: {model: UserLocationUpdate, unique: false},
+  constraints: false
+})
+Service.hasMany(User, {
+  through: {model: UserLocationUpdate, unique: false},
+  constraints: false
+})
 
-/**
- * We'll export all of our models here, so that any time a module needs a model,
- * we can just require it from 'db/models'
- * for example, we can say: const {User} = require('../db/models')
- * instead of: const User = require('../db/models/user')
- */
+// 1:M Location:UserLocationUpdate
+Location.hasMany(UserLocationUpdate)
+UserLocationUpdate.belongsTo(Location)
+
+// 1:M Location:OverallService
+Location.hasMany(Service, {as: 'OverallServices'})
+
 module.exports = {
-  User
+  User,
+  Service,
+  Location,
+  UserLocationUpdate
 }
