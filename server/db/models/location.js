@@ -18,7 +18,7 @@ const Location = db.define('location', {
   },
   overallRating: {
     type: Sequelize.DECIMAL,
-    defaultValue: 1,
+    defaultValue: 0,
     allowNull: false,
     validate: {
       notEmpty: true
