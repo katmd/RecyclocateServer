@@ -11,6 +11,10 @@ const Service = db.define('service', {
   imageIcon: {
     type: Sequelize.STRING,
     defaultValue: '/images/recycling-symbol.png'
+  },
+  availableAtLocation: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
